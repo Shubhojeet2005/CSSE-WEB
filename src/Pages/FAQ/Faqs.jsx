@@ -48,8 +48,8 @@ export default function FAQSection() {
               {faq.question}
             </button>
             <div
-              className={`transition-all duration-300 ${
-                activeIndex === index ? "max-h-40 py-4 px-4" : "max-h-0"
+              className={`text-xs transition-all duration-300 ${
+                activeIndex === index ? "max-h-auto py-4 px-4" : "max-h-0"
               } overflow-hidden text-gray-600`}
             >
               <p>{faq.answer}</p>
