@@ -49,24 +49,15 @@ const Boxes = () => {
     <div className='head'>
       <div className='container'>
         {events.map((event, index) => (
-          <div className='w-full m-0 pt-0 pb-4 pr-0 pl-0 flex' key={index}>
-            {index % 2 === 0 ?
-            <div className='box flex p-4'>
-              <div className='w-[50%] text-center items-center flex flex-col justify-center gap-5'>
-                <p className=' text-white text-6xl'><span>{event.title}</span></p>
-                <p className='text-white'>{event.description}</p>
+          <div className='w-full m-0 pt-0 pb-4 pr-0 pl-0 flex flex-col gap-6' key={index}>
+            <div className={`box flex flex-col p-4 ${index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}>
+              <div className='w-full sm:w-[50%] text-center items-center flex flex-col justify-center gap-5 p-4'>
+                <p className='text-white text-3xl sm:text-6xl font-semibold'>{event.title}</p>
+                <p className='text-white text-sm sm:text-base'>{event.description}</p>
               </div>
-              <div className='w-[50%] top_section text-center flex justify-center items-center text-white text-6xl'>
+              <div className='w-full sm:w-[50%] top_section text-center flex justify-center items-center text-white'>
               </div>
-            </div> :
-            <div className={`box box2 flex p-4`}>
-              <div className='w-[50%] top_section text-center flex justify-center items-center text-white text-6xl'>
-              </div>
-              <div className='w-[50%] text-center items-center flex flex-col justify-center gap-5'>
-                <p className=' text-white text-6xl'><span>{event.title}</span></p>
-                <p className='text-white'>{event.description}</p>
-              </div>
-            </div>}
+            </div>
           </div>
         ))}
       </div>
