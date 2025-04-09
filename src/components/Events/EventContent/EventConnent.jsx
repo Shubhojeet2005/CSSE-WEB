@@ -1,46 +1,93 @@
 import React from 'react';
 import './EventContent.css';
+import debate1 from '../../../assets/events/debate1.jpg'
+import debate2 from '../../../assets/events/debate2.jpg'
+import GD1 from '../../../assets/events/GD1.jpg'
+import GD2 from '../../../assets/events/GD2.jpg'
+import python1 from '../../../assets/events/python1.jpg'
+import python2 from '../../../assets/events/python2.jpg'
+import techno1 from '../../../assets/events/techno1.png'
+import techno2 from '../../../assets/events/techno2.jpg'
+import byteburst1 from '../../../assets/events/byteburst1.jpg'
+import byteburst2 from '../../../assets/events/byteburst2.jpg'
+import frame1 from '../../../assets/events/framefiesta1.jpg'
+// import frame2 from '../../../assets/events/framefiesta2.jpg'
+import technicalPre1 from '../../../assets/events/technicalPre1.jpg'
+// import technicalPre1 from '../../../assets/events/technicalPre1.jpg'
+// extempore
+// codebugger
+import webwonders1 from '../../../assets/gallery1.jpg'
+import webwonders2 from '../../../assets/gallery5.jpg'
+import creative1 from '../../../assets/gallery3.jpg'
+// import creative2 from '../../../assets/gallery3.jpg'
+
 
 const events = [
   {
-    title: 'Tech Symposium',
-    description: 'An event to showcase the latest in tech innovations. Come and see the latest tech projects by our society members. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, nihil? Ut voluptas et porro fuga nemo, nostrum quo molestias, nobis numquam tempora aliquam, soluta non? Quia autem aperiam iste minima.',
-    image: './assets/poster-1.png', // Replace with your image path
+    title: 'Debate - Competition',
+    description: 'A Debate Competition is an intellectual event where participants engage in structured arguments on a given topic. It fosters critical thinking, public speaking, and persuasive skills as individuals or teams present their viewpoints while countering opposing arguments.Participants are judged based on clarity, content, reasoning, rebuttal strength, and overall delivery. The topics can range from current affairs and technology to ethics and social issues.',
+    defaultImage: debate1,
+    hoverImage: debate2
   },
   {
-    title: 'Cultural Fest',
-    description: 'Experience the vibrant culture of our college with performances, art exhibitions, and much more! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, nihil? Ut voluptas et porro fuga nemo, nostrum quo molestias, nobis numquam tempora aliquam, soluta non? Quia autem aperiam iste minima.',
-    image: 'path_to_image2.jpg', // Replace with your image path
+    title: 'Technical Presentation',
+    description: 'The Technical Presentation Competition is an exciting event where students showcase their skills, innovations, and projects in front of an audience. It provides a platform for budding technologists to present their work, ranging from software applications and AI models to hardware prototypes and research projects. Participants deliver structured presentations, explaining their project idea, development process, technologies used, challenges faced, and real-world applications. They may also demonstrate their projects live to highlight their functionality.',
+    defaultImage: technicalPre1,
+    hoverImage: technicalPre1
   },
   {
-    title: 'Annual Sports Meet',
-    description: 'Showcase your athletic skills and compete for glory at the Annual Sports Meet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, nihil? Ut voluptas et porro fuga nemo, nostrum quo molestias, nobis numquam tempora aliquam, soluta non? Quia autem aperiam iste minima.',
-    image: 'path_to_image3.jpg', // Replace with your image path
+    title: 'Creative Writing',
+    description: 'The Creative Writing Competition is an event that encourages participants to express their thoughts, emotions, and imagination through the power of words. It provides a platform for students to showcase their storytelling, poetic, and narrative skills in various forms such as short stories, poetry, essays, and fictional pieces.',
+    defaultImage: creative1,
+    hoverImage: ''
   },
   {
-    title: 'Entrepreneurship Summit',
-    description: 'Interact with successful entrepreneurs and get insights on starting your own business. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, nihil? Ut voluptas et porro fuga nemo, nostrum quo molestias, nobis numquam tempora aliquam, soluta non? Quia autem aperiam iste minima.',
-    image: 'path_to_image4.jpg', // Replace with your image path
+    title: 'Extempore',
+    description: 'The Extempore Competition is a dynamic and spontaneous speaking event where participants deliver an impromptu presentation on a topic given at the time of the event. This competition challenges students to think quickly, structure their thoughts effectively, and articulate their ideas confidently within a short preparation time.',
+    defaultImage: '',
+    hoverImage: ''  
   },
   {
-    title: 'Coding Marathon',
-    description: 'Join our 24-hour coding marathon to solve complex challenges and win amazing prizes! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, nihil? Ut voluptas et porro fuga nemo, nostrum quo molestias, nobis numquam tempora aliquam, soluta non? Quia autem aperiam iste minima.',
-    image: 'path_to_image5.jpg', // Replace with your image path
+    title: 'Web Wonders',
+    description: 'Web Wonders is an exciting competition designed for students to showcase and enhance their web development skills. This event provides a platform for participants to design, develop, and deploy creative and functional web applications within a given time frame. Participants can compete individually or in teams to build responsive, interactive, and innovative websites based on a given theme or problem statement. They are judged on design aesthetics, functionality, user experience, code quality, and overall creativity.',
+    defaultImage: webwonders1,
+    hoverImage: webwonders2  
   },
   {
-    title: 'Art Workshop',
-    description: 'Participate in a workshop led by professional artists to hone your artistic skills. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, nihil? Ut voluptas et porro fuga nemo, nostrum quo molestias, nobis numquam tempora aliquam, soluta non? Quia autem aperiam iste minima.',
-    image: 'path_to_image6.jpg', // Replace with your image path
+    title: 'Group Discussion',
+    description: 'The Group Discussion (GD) Competition is an interactive event where participants engage in a structured discussion on a given topic. It tests their communication skills, critical thinking, teamwork, and ability to present logical arguments in a collaborative setting.',
+    defaultImage: GD1,
+    hoverImage: GD2  
   },
   {
-    title: 'Science Exhibition',
-    description: 'Explore groundbreaking scientific experiments and presentations by students. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, nihil? Ut voluptas et porro fuga nemo, nostrum quo molestias, nobis numquam tempora aliquam, soluta non? Quia autem aperiam iste minima.',
-    image: 'path_to_image7.jpg', // Replace with your image path
+    title: 'Python Programming Classes',
+    description: 'The Python Programming Classes are designed to help students learn, explore, and master one of the most powerful and versatile programming languages—Python. These sessions cover everything from basic syntax and logic building to advanced concepts like data structures, object-oriented programming, web development, automation, and AI/ML.',
+    defaultImage: python1,
+    hoverImage: python2  
   },
   {
-    title: 'Music Fest',
-    description: 'End the year with a bang! Enjoy live performances by various bands at the annual Music Fest. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, nihil? Ut voluptas et porro fuga nemo, nostrum quo molestias, nobis numquam tempora aliquam, soluta non? Quia autem aperiam iste minima.',
-    image: 'path_to_image8.jpg', // Replace with your image path
+    title: 'CodeBugger',
+    description: 'CodeBugger is an exciting debugging competition where participants put their problem-solving and analytical skills to the test by identifying and fixing errors in given pieces of code. This event challenges students to think logically, analyze code structures, and debug efficiently within a time limit.',
+    defaultImage: '',
+    hoverImage: ''  
+  },
+  {
+    title: 'FrameFiesta',
+    description: 'FrameFiesta is a captivating photography competition that provides students the opportunity to showcase their photographic skills, creativity, and artistic vision. This event invites participants to capture stunning images, highlighting the beauty in everyday life, nature, or a chosen theme.',
+    defaultImage: frame1,
+    hoverImage: ''  
+  },
+  {
+    title: 'ByteBurst',
+    description: 'ByteBurst Hackathon is a web development-focused event where participants collaborate to create innovative websites or web applications within a set time frame. The hackathon encourages developers to apply their skills in front-end and back-end technologies to build functional, creative solutions addressing specific themes or challenges. It’s a great opportunity to learn, network, and showcase web development expertise.',
+    defaultImage: byteburst1,
+    hoverImage: byteburst2  
+  },
+  {
+    title: 'Technokratos-The Grand Event',
+    description: 'The Grand Fest is an exciting multi-event extravaganza where students can showcase their diverse talents and creativity. The event features a range of activities, including solo and group dance competitions, singing performances, and a glamorous fashion show. Participants can also take the stage for an open mic session to perform poetry, comedy, or music. The art and craft exhibition allows students to display their artistic creations, while the classic game of musical chairs adds fun to the day. A drama performance also highlights the theatrical skills of participants. The Grand Fest is a perfect opportunity to celebrate creativity and foster teamwork.',
+    defaultImage: techno1,
+    hoverImage: techno2  
   },
 ];
 
@@ -55,7 +102,13 @@ const Boxes = () => {
                 <p className='text-white text-3xl sm:text-6xl font-semibold'>{event.title}</p>
                 <p className='text-white text-sm sm:text-base'>{event.description}</p>
               </div>
-              <div className='w-full sm:w-[50%] top_section text-center flex justify-center items-center text-white'>
+              <div className='w-full sm:w-[50%] top_section text-center flex justify-center items-center text-white'
+                style={{
+                  backgroundImage: `url(${event.defaultImage})`,
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundImage = `url(${event.hoverImage})`}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundImage = `url(${event.defaultImage})`}
+              >
               </div>
             </div>
           </div>

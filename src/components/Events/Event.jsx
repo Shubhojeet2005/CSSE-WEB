@@ -7,12 +7,11 @@ import Navbar from '../../Navbar/Navbar'
 const Event = () => {
   return (
 
-    <>  
-      <Navbar/>
-     
-        <EventHead />
-        <EventContent />
-        <Bottom/>
+    <>
+      <Navbar />
+      <EventHead />
+      <EventContent />
+      <Bottom />
     </>
   )
 }

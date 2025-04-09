@@ -62,7 +62,7 @@ const ImageSlider = () => {
           className="text-white mt-[400px] bg-indigo-400 rounded-md py-2 px-4"
           onClick={handleBack}
         > */}
-        <div className="mt-[420px]">
+        <div className="mt-[220px] sm:mt-[420px]">
           <button
             className="cursor-pointer duration-200 hover:scale-125 active:scale-100"
             title="Go Back"
@@ -85,7 +85,7 @@ const ImageSlider = () => {
             {/* </button> */}
           </button>
         </div>
-        <div className="mt-[420px]">
+        <div className="mt-[220px] sm:mt-[420px]">
           <button
             className="cursor-pointer duration-200 hover:scale-125 active:scale-100"
             title="Go Forward"

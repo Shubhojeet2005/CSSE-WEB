@@ -44,7 +44,7 @@
 
 .top_section{
   margin: 0 auto;
-  background-image: url("/src/assets/planet1.png");
+  /* background-image: url("/src/assets/planet1.png"); */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -55,6 +55,6 @@
 }
 
 .top_section:hover{
-  background-image: url("/src/assets/planet2.png");
+  /* background-image: url("/src/assets/planet2.png"); */
   border-radius: 14% 86% 37% 63% / 53% 31% 69% 47% ;
 }

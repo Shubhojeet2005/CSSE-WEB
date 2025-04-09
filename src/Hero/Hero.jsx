@@ -7,16 +7,26 @@ import Timeline from '../Pages/Timeline/timeline';
 import SliderInfo from '../Pages/SliderInfo/sliderInfo';
 import HomeContent from '../Pages/HomeContent/HomeContent';
 import Particle from '../components/particle';
-import { HashLoader } from 'react-spinners'; // Import HashLoader
+import { HashLoader } from 'react-spinners';
+import ImageSlider2 from '../Society/Society2';
 
 const Hero = () => {
     const [loading, setLoading] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth < 640);
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
         setTimeout(() => {
             setLoading(false);
         }, 7000);
+
+        return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
     return (
@@ -33,7 +43,7 @@ const Hero = () => {
                     <div className='bg-slate-950 relative'>
                         <Particle />
                         <div className="relative z-10">
-                            <ImageSlider />
+                            {isMobile ? <ImageSlider2 /> : <ImageSlider />}
                             <SliderInfo />
                             <HomeContent className="overflow-hidden" />
                             <Timeline />
