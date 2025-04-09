@@ -34,7 +34,7 @@ const Section = () => {
     </div>
 </div>
   
-  <div className="w-full md:w-1/2 mb-6 md:mb-0 text-white mr-20 px-4">
+  <div className="w-full md:w-1/2 text-white mr-10">
     <h2 className="text-3xl font-bold mb-4 underline">About CSSE</h2>
     <p className="text-lg ml-10 text-left">
     ▪ Founded in the year 2013, by Alumni Respected Ankit Porwal and Vivek Samele.<br/>
@@ -83,7 +83,7 @@ const Section = () => {
     </div>
 </div>
   
-  <div className="w-full md:w-1/2 mb-6 md:mb-0 text-white mr-20 px-4">
+  <div className="w-full md:w-1/2 text-white mr-10">
     <h2 className="text-3xl font-bold mb-4 underline">Our Vision</h2>
     <p className="text-lg ml-10 text-left">
       Our vision is to empower individuals and organizations by providing high-quality services that foster growth, innovation, and sustainability. We aim to be leaders in our field, setting benchmarks in excellence and contributing positively to society.
@@ -128,7 +128,7 @@ const Section = () => {
     </div>
 </div>
   
-  <div className="w-full md:w-1/2 mb-6 md:mb-0 text-white mr-20 px-4">
+  <div className="w-full md:w-1/2 text-white mr-10">
     <h2 className="text-3xl font-bold mb-4 underline">Why join CSSE ?</h2>
     <p className="text-lg ml-10 text-left">
       ▪ Joining CSSE offers students a chance to develop essential life skills such as leadership, communication, and teamwork.<br/>
@@ -175,7 +175,7 @@ const Section = () => {
     </div>
 </div>
   
-  <div className="w-full md:w-1/2 mb-6 md:mb-0 text-white mr-20 px-4">
+  <div className="w-full md:w-1/2 text-white mr-10">
     <h2 className="text-3xl font-bold mb-4 underline ml-2">Community Impact</h2>
     <p className="text-lg ml-10 text-left">
       ▪ CSSE plays a vital role in fostering community awareness and social responsibility.<br/>

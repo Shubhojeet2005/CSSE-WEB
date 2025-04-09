@@ -5,6 +5,13 @@ import img2 from '../../../assets/planet2.png';
 import img3 from '../../../assets/poster-1.png'; // Corrected file name
 import img4 from '../../../assets/city1.png';
 
+import technicalPre1 from '../../../assets/events/technicalPre1.jpg'
+import techno2 from '../../../assets/events/techno2.jpg'
+import byteburst1 from '../../../assets/events/byteburst1.jpg'
+
+
+
+
 const HeroContent = () => {
   const headlines = [
     'Explore our world',
@@ -13,7 +20,7 @@ const HeroContent = () => {
     'Each one of them pretty',
   ];
 
-  const backgroundImages = [img1, img2, img3, img4];
+  const backgroundImages = [technicalPre1, techno2, img3, byteburst1];
 
   return (
     <div>
