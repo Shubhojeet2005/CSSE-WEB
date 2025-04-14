@@ -5,7 +5,6 @@ import city2 from "../assets/city2.png";
 import city3 from "../assets/city3.png";
 import planet1 from "../assets/planet1.png";
 import planet2 from "../assets/planet2.png";
-import Particle from "../components/particle";
 
 const ImageSlider = () => {
   const [positionIndexes, setPositionIndexes] = useState([0, 1, 2, 3, 4]);
@@ -62,7 +61,7 @@ const ImageSlider = () => {
           className="text-white mt-[400px] bg-indigo-400 rounded-md py-2 px-4"
           onClick={handleBack}
         > */}
-        <div className="mt-[420px]">
+        <div className="mt-[220px] sm:mt-[420px]">
           <button
             className="cursor-pointer duration-200 hover:scale-125 active:scale-100"
             title="Go Back"
@@ -85,7 +84,7 @@ const ImageSlider = () => {
             {/* </button> */}
           </button>
         </div>
-        <div className="mt-[420px]">
+        <div className="mt-[220px] sm:mt-[420px]">
           <button
             className="cursor-pointer duration-200 hover:scale-125 active:scale-100"
             title="Go Forward"
