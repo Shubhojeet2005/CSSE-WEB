@@ -5,7 +5,6 @@ import city2 from "../assets/city2.png";
 import city3 from "../assets/city3.png";
 import planet1 from "../assets/planet1.png";
 import planet2 from "../assets/planet2.png";
-import Particle from "../components/particle";
 
 const ImageSlider = () => {
   const [positionIndexes, setPositionIndexes] = useState([0, 1, 2, 3, 4]);
