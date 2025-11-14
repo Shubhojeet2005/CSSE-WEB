@@ -26,7 +26,10 @@ api.interceptors.request.use(
 export const authAPI = {
   register: (userData) => api.post('/auth/register', userData),
   login: (credentials) => api.post('/auth/login', credentials),
-  getProfile: () => api.get('/auth/profile')
+  getProfile: () => api.get('/auth/profile'),
+  updateProfile: (formData) => api.put('/auth/profile', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  })
 };
 
 export default api;

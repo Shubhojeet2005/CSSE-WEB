@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start:server": "node src/server/index.js",
+    "install-server-deps": "cd src/server && npm install",
     "build": "vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

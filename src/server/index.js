@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const path = require('path');
 require('dotenv').config();
 
 const User = require('./models/User');
@@ -11,6 +13,21 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors());
+// serve uploaded files
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'uploads'));
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+  }
+});
+const upload = multer({ storage });
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/Student", {
@@ -165,6 +182,42 @@ app.get('/api/auth/profile', authenticateToken, async (req, res) => {
       message: 'Server error',
       error: error.message 
     });
+  }
+});
+
+// Update profile (including profile picture upload)
+app.put('/api/auth/profile', authenticateToken, upload.single('profilePic'), async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    // Update allowed fields
+    const { name, year, branch } = req.body;
+    if (name) user.name = name;
+    if (year) user.year = year;
+    if (branch) user.branch = branch;
+
+    if (req.file) {
+      // build accessible url for uploaded file
+      const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+      user.profilePic = fileUrl;
+    }
+
+    await user.save();
+
+    res.status(200).json({ success: true, message: 'Profile updated', user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      year: user.year,
+      branch: user.branch,
+      profilePic: user.profilePic
+    }});
+  } catch (error) {
+    console.error('Profile Update Error:', error);
+    res.status(500).json({ success: false, message: 'Server error', error: error.message });
   }
 });
 

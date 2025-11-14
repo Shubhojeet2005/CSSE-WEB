@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Branch is required']
   },
+  profilePic: {
+    type: String,
+    default: ''
+  },
   createdAt: {
     type: Date,
     default: Date.now
