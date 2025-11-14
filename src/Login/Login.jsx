@@ -66,7 +66,7 @@ const Login = () => {
         if (response.data.success) {
           localStorage.setItem('authToken', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data.user));
-          // notify other components (Navbar) about auth change
+         
           window.dispatchEvent(new Event('authChanged'));
           alert(`Welcome back, ${response.data.user.name}!`);
           navigate('/profile');

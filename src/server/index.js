@@ -10,7 +10,7 @@ const User = require('./models/User');
 
 const app = express();
 
-// Middleware
+
 app.use(express.json());
 app.use(cors());
 // serve uploaded files
@@ -37,12 +37,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/Student",
 .then(() => console.log('MongoDB Connected Successfully'))
 .catch(err => console.error('MongoDB Connection Error:', err));
 
-// Registration Route
+
 app.post('/api/auth/register', async (req, res) => {
   try {
     const { name, email, password, year, branch } = req.body;
 
-    // Validation
+ 
     if (!name || !email || !password || !year || !branch) {
       return res.status(400).json({ 
         success: false, 
@@ -50,7 +50,7 @@ app.post('/api/auth/register', async (req, res) => {
       });
     }
 
-    // Check if user already exists
+  
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ 
@@ -59,7 +59,7 @@ app.post('/api/auth/register', async (req, res) => {
       });
     }
 
-    // Create new user
+
     const user = new User({
       name,
       email,
@@ -70,7 +70,7 @@ app.post('/api/auth/register', async (req, res) => {
 
     await user.save();
 
-    // Generate JWT token
+   
     const token = jwt.sign(
       { userId: user._id, email: user.email },
       process.env.JWT_SECRET || 'your_secret_key',
@@ -100,12 +100,12 @@ app.post('/api/auth/register', async (req, res) => {
   }
 });
 
-// Login Route
+
 app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validation
+   
     if (!email || !password) {
       return res.status(400).json({ 
         success: false, 
@@ -113,7 +113,7 @@ app.post('/api/auth/login', async (req, res) => {
       });
     }
 
-    // Find user
+  
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ 
@@ -122,7 +122,7 @@ app.post('/api/auth/login', async (req, res) => {
       });
     }
 
-    // Check password
+   
     const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
       return res.status(401).json({ 
@@ -131,7 +131,7 @@ app.post('/api/auth/login', async (req, res) => {
       });
     }
 
-    // Generate JWT token
+   
     const token = jwt.sign(
       { userId: user._id, email: user.email },
       process.env.JWT_SECRET || 'your_secret_key',
@@ -161,7 +161,7 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-// Get User Profile (Protected Route)
+
 app.get('/api/auth/profile', authenticateToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId).select('-password');
@@ -185,7 +185,7 @@ app.get('/api/auth/profile', authenticateToken, async (req, res) => {
   }
 });
 
-// Update profile (including profile picture upload)
+
 app.put('/api/auth/profile', authenticateToken, upload.single('profilePic'), async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
@@ -193,14 +193,14 @@ app.put('/api/auth/profile', authenticateToken, upload.single('profilePic'), asy
       return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    // Update allowed fields
+    
     const { name, year, branch } = req.body;
     if (name) user.name = name;
     if (year) user.year = year;
     if (branch) user.branch = branch;
 
     if (req.file) {
-      // build accessible url for uploaded file
+    
       const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
       user.profilePic = fileUrl;
     }
@@ -221,7 +221,7 @@ app.put('/api/auth/profile', authenticateToken, upload.single('profilePic'), asy
   }
 });
 
-// Middleware to authenticate JWT token
+
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -245,7 +245,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// Health check route
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running', timestamp: new Date() });
 });
