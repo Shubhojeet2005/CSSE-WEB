@@ -1,14 +1,34 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHome, FaBars, FaTimes } from "react-icons/fa";
 import LOGOCSSE from '../assets/LOGOCSSE.png';
 
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  useEffect(() => {
+    const stored = localStorage.getItem('user');
+    if (stored) setAuthUser(JSON.parse(stored));
+
+    const onAuthChanged = () => {
+      const s = localStorage.getItem('user');
+      setAuthUser(s ? JSON.parse(s) : null);
+    };
+
+    window.addEventListener('authChanged', onAuthChanged);
+    window.addEventListener('storage', onAuthChanged);
+    return () => {
+      window.removeEventListener('authChanged', onAuthChanged);
+      window.removeEventListener('storage', onAuthChanged);
+    };
+  }, []);
 
   return (
     <>
@@ -30,50 +50,77 @@ const Navbar = () => {
 
         {/* Links for Larger Screens */}
         <ul className="hidden sm:flex font-bold items-center space-x-6">
-        <Link to="/">
-            <li className="flex items-center gap-2 text-zinc-400">
+          <li className="flex items-center gap-2 text-zinc-400">
+            <Link to="/" className="flex items-center gap-2">
               <FaHome className="text-2xl" />
-              Home
-            </li>
-          </Link>
-          <Link to="/events">
-            <li className="p-2 cursor-pointer text-zinc-400">Events</li>
-          </Link>
+              <span>Home</span>
+            </Link>
+          </li>
+          <li className="p-2 cursor-pointer text-zinc-400">
+            <Link to="/events">Events</Link>
+          </li>
           <li className="p-2 cursor-pointer text-zinc-400">About</li>
-          <Link to="/members">
-            <li className="p-2 cursor-pointer text-zinc-400">Team</li>
-          </Link>
+          <li className="p-2 cursor-pointer text-zinc-400">
+            <Link to="/members">Team</Link>
+          </li>
           <li className="p-2 cursor-pointer text-zinc-400">Contact</li>
-          <Link to="/auth">
-            <button className="text-cyan-600 hover:bg-cyan-400 hover:text-white hover:rounded-lg px-4 py-2">
-              Sign / Log
-            </button>
-          </Link>
+          {!authUser ? (
+            <li>
+              <Link
+                to="/Login"
+                className="text-cyan-600 hover:bg-cyan-400 hover:text-white hover:rounded-lg px-4 py-2"
+              >
+                Sign / Log
+              </Link>
+            </li>
+          ) : (
+            <li className="relative flex items-center gap-2">
+              <button onClick={() => navigate('/profile')} className="flex items-center gap-2 text-zinc-200">
+                <img src={authUser.profilePic || 'https://via.placeholder.com/36'} alt="avatar" className="w-9 h-9 rounded-full object-cover border" />
+                <span className="text-sm">{authUser.name?.split(' ')[0] || 'Profile'}</span>
+              </button>
+              <button
+                onClick={() => {
+                  // logout
+                  localStorage.removeItem('authToken');
+                  localStorage.removeItem('user');
+                  window.dispatchEvent(new Event('authChanged'));
+                  navigate('/');
+                }}
+                className="ml-2 text-sm text-red-400 hover:text-red-300 px-3 py-1 rounded"
+              >
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
 
       {/* Dropdown Menu for Mobile */}
       {menuOpen && (
         <ul className="sm:hidden bg-slate-950 text-zinc-400 font-bold flex flex-col items-start px-5 py-3 space-y-3">
-          <Link to="/">
-            <li className="flex items-center gap-2">
+          <li className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
               <FaHome className="text-2xl" />
-              Home
-            </li>
-          </Link>
-          <Link to="/events">
-            <li>Events</li>
-          </Link>
+              <span>Home</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/events">Events</Link>
+          </li>
           <li>About</li>
-          <Link to="/members">
-            <li>Team</li>
-          </Link>
+          <li>
+            <Link to="/members">Team</Link>
+          </li>
           <li>Contact</li>
-          <Link to="/auth">
-            <button className="text-cyan-600 hover:bg-cyan-400 hover:text-white hover:rounded-lg py-2 mt-2">
+          <li>
+            <Link
+              to="/Login"
+              className="text-cyan-600 hover:bg-cyan-400 hover:text-white hover:rounded-lg py-2 mt-2"
+            >
               Sign / Log
-            </button>
-          </Link>
+            </Link>
+          </li>
         </ul>
       )}
     </>
